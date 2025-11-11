@@ -40,15 +40,48 @@ export default function LandingPage() {
     { name: "Reflexologia Podal", desc: "Ativa pontos reflexos nos pés e melhora funções do corpo.", price: "R$ 120,00" },
   ];
 
+  // ⬇️ GALERIA FINAL (8 itens com legendas/alt definidos)
   const gallery = [
-    { src: "/images/foto-neuza-arrumando.webp", alt: "Preparo do atendimento" },
-    { src: "/images/espaco1.webp", alt: "Sala de atendimento 1" },
-    { src: "/images/espaco2.webp", alt: "Sala de atendimento 2" },
-    { src: "/images/espaco3.webp", alt: "Sala de atendimento 3" },
-    { src: "/images/espaco4.webp", alt: "Detalhes do ambiente" },
-    { src: "/images/espaco5.webp", alt: "Camilla e iluminação suave" },
-    { src: "/images/espaco6.webp", alt: "Higiene e organização" },
-    { src: "/images/espaco7.webp", alt: "Recepção aconchegante" },
+    {
+      src: "/images/foto-neuza-arrumando.webp",
+      caption: "Preparo do atendimento",
+      alt: "Neuza preparando o ambiente para o atendimento",
+    },
+    {
+      src: "/images/espaco1.webp",
+      caption: "Sala de atendimento",
+      alt: "Sala de atendimento com maca e iluminação natural",
+    },
+    {
+      src: "/images/espaco2.webp",
+      caption: "Sala de atendimento",
+      alt: "Ambiente de atendimento com equipamentos e plantas",
+    },
+    {
+      src: "/images/espaco3.webp",
+      caption: "Sala de atendimento",
+      alt: "Sala de atendimento organizada e acolhedora",
+    },
+    {
+      src: "/images/espaco4.webp",
+      caption: "Detalhes do ambiente",
+      alt: "Certificado emoldurado e iluminação de parede",
+    },
+    {
+      src: "/images/espaco5.webp",
+      caption: "Nosso Produto",
+      alt: "Produtos profissionais utilizados nos atendimentos",
+    },
+    {
+      src: "/images/espaco6.webp",
+      caption: "Localização",
+      alt: "Placa do edifício Laudo Natel Tower em Perdizes",
+    },
+    {
+      src: "/images/espaco7.webp",
+      caption: "Recepção aconchegante",
+      alt: "Fachada do prédio e acesso à recepção",
+    },
   ];
 
   const whatsappFor = (service: string) =>
@@ -86,24 +119,17 @@ export default function LandingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">
-              Sobre Neuza Fernandes
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Sobre Neuza Fernandes</h2>
             <p className="mt-4 text-[#555] leading-relaxed">
               Com mais de <strong>40 anos de prática em estética terapêutica</strong>, Neuza
               combina técnica, sensibilidade e propósito para transformar corpo e mente com
               segurança e acolhimento.
-              <br />
-              <br />
-              Especialista em <strong>Drenagem Linfática Método Vodder</strong>,{" "}
-              <strong>Shiatsu</strong>, <strong>Reiki</strong> e{" "}
-              <strong>Reflexologia</strong>, ela acredita que cada toque é uma forma de cuidar
-              profundamente.
+              <br /><br />
+              Especialista em <strong>Drenagem Linfática Método Vodder</strong>, <strong>Shiatsu</strong>,
+              <strong> Reiki</strong> e <strong>Reflexologia</strong>, ela acredita que cada toque é uma forma
+              de cuidar profundamente.
             </p>
-            <blockquote
-              className="mt-6 border-l-4 pl-4 italic text-[#666]"
-              style={{ borderColor: "#e2a9f1" }}
-            >
+            <blockquote className="mt-6 border-l-4 pl-4 italic text-[#666]" style={{ borderColor: PALETTE.lilac }}>
               “Cada corpo tem um ritmo. Eu respeito o seu.”
             </blockquote>
             <div className="mt-6 flex gap-3">
@@ -133,7 +159,7 @@ export default function LandingPage() {
           >
             <img
               src="/images/foto-neuza-preparando.webp"
-              alt="Neuza Fernandes preparando materiais de atendimento"
+              alt="Neuza organizando materiais antes do atendimento"
               className="rounded-2xl shadow-md object-cover w-full h-[420px]"
             />
           </m.div>
@@ -143,9 +169,7 @@ export default function LandingPage() {
       {/* O ESPAÇO */}
       <section id="galeria" className="py-20 bg-[#F7F3FF]">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#222] text-center mb-10">
-            O Espaço
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-[#222] text-center mb-10">O Espaço</h2>
 
           <LazyMotion features={domAnimation}>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -169,7 +193,7 @@ export default function LandingPage() {
                     />
                   </div>
                   <div className="px-4 py-3 text-center text-[13px] text-[#666]">
-                    {f.alt}
+                    {f.caption}
                   </div>
                 </m.article>
               ))}
@@ -235,9 +259,7 @@ export default function LandingPage() {
       <section id="visite" className="py-14 bg-white">
         <div className="mx-auto max-w-6xl px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Visite-nos</h2>
-        <p className="mt-2 text-[#555]">
-            R. Cotoxó, 611 — 1º andar (Cj 17) — Perdizes / SP
-          </p>
+          <p className="mt-2 text-[#555]">R. Cotoxó, 611 — 1º andar (Cj 17) — Perdizes / SP</p>
           <p className="text-sm mt-1" style={{ color: PALETTE.moss }}>
             Estacionamento pago no prédio
           </p>
@@ -289,12 +311,8 @@ export default function LandingPage() {
 
       {/* CTA FINAL */}
       <section id="cta" className="py-20 bg-white text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">
-          Reserve seu momento de equilíbrio
-        </h2>
-        <p className="mt-3 text-[#555]">
-          Agende sua sessão agora e sinta o poder do toque consciente.
-        </p>
+        <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Reserve seu momento de equilíbrio</h2>
+        <p className="mt-3 text-[#555]">Agende sua sessão agora e sinta o poder do toque consciente.</p>
         <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
           <a
             href={CONFIG.whatsappDefault}
