@@ -8,11 +8,11 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* HEADER */}
-      <header className="relative py-6 md:py-8 bg-white shadow-sm flex justify-center items-center">
+      <header className="relative py-4 md:py-6 bg-white shadow-sm flex justify-center items-center">
         <img
           src="/images/logo-neuza-tight.webp"
           alt="Logo Neuza Fernandes - Espaço Saúde Perdizes"
-          className="w-[300px] md:w-[420px] lg:w-[540px] h-auto block transition-all duration-300"
+          className="w-[180px] md:w-[260px] lg:w-[320px] h-auto block transition-all duration-300 drop-shadow-sm"
         />
         <a
           href="https://www.instagram.com/espacosaudeneuza/"
