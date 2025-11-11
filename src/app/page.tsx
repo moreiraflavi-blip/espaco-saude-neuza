@@ -1,5 +1,5 @@
 "use client";
-import { m, LazyMotion, domAnimation } from "framer-motion";
+
 import { Instagram, MapPin } from "lucide-react";
 
 const PALETTE = {
@@ -40,63 +40,34 @@ export default function LandingPage() {
     { name: "Reflexologia Podal", desc: "Ativa pontos reflexos nos pés e melhora funções do corpo.", price: "R$ 120,00" },
   ];
 
-  // ⬇️ GALERIA FINAL (8 itens com legendas/alt definidos)
   const gallery = [
-    {
-      src: "/images/foto-neuza-arrumando.webp",
-      caption: "Preparo do atendimento",
-      alt: "Neuza preparando o ambiente para o atendimento",
-    },
-    {
-      src: "/images/espaco1.webp",
-      caption: "Sala de atendimento",
-      alt: "Sala de atendimento com maca e iluminação natural",
-    },
-    {
-      src: "/images/espaco2.webp",
-      caption: "Sala de atendimento",
-      alt: "Ambiente de atendimento com equipamentos e plantas",
-    },
-    {
-      src: "/images/espaco3.webp",
-      caption: "Sala de atendimento",
-      alt: "Sala de atendimento organizada e acolhedora",
-    },
-    {
-      src: "/images/espaco4.webp",
-      caption: "Detalhes do ambiente",
-      alt: "Certificado emoldurado e iluminação de parede",
-    },
-    {
-      src: "/images/espaco5.webp",
-      caption: "Nosso Produto",
-      alt: "Produtos profissionais utilizados nos atendimentos",
-    },
-    {
-      src: "/images/espaco6.webp",
-      caption: "Localização",
-      alt: "Placa do edifício Laudo Natel Tower em Perdizes",
-    },
-    {
-      src: "/images/espaco7.webp",
-      caption: "Recepção aconchegante",
-      alt: "Fachada do prédio e acesso à recepção",
-    },
+    { src: "/images/foto-neuza-arrumando.webp", caption: "Preparo do atendimento", alt: "Neuza preparando o ambiente para o atendimento" },
+    { src: "/images/espaco1.webp", caption: "Sala de atendimento", alt: "Sala de atendimento com maca e iluminação natural" },
+    { src: "/images/espaco2.webp", caption: "Sala de atendimento", alt: "Ambiente de atendimento com equipamentos e plantas" },
+    { src: "/images/espaco3.webp", caption: "Sala de atendimento", alt: "Sala de atendimento organizada e acolhedora" },
+    { src: "/images/espaco4.webp", caption: "Detalhes do ambiente", alt: "Certificado emoldurado e iluminação de parede" },
+    { src: "/images/espaco5.webp", caption: "Nosso Produto", alt: "Produtos profissionais utilizados nos atendimentos" },
+    { src: "/images/espaco6.webp", caption: "Localização", alt: "Placa do edifício Laudo Natel Tower em Perdizes" },
+    { src: "/images/espaco7.webp", caption: "Recepção aconchegante", alt: "Fachada do prédio e acesso à recepção" },
+  ];
+
+  const testimonials = [
+    { name: "Ana P.", text: "Saí leve e sem inchaço. Atendimento muito cuidadoso!" },
+    { name: "Marina L.", text: "A drenagem da Neuza é diferente, senti resultado já na primeira sessão." },
+    { name: "Renata S.", text: "Ambiente calmo, técnicas precisas e muito acolhimento." },
   ];
 
   const whatsappFor = (service: string) =>
-    `${CONFIG.whatsappBase}${encodeURIComponent(
-      `Olá Neuza, gostaria de agendar ${service}.`
-    )}`;
+    `${CONFIG.whatsappBase}${encodeURIComponent(`Olá Neuza, gostaria de agendar ${service}.`)}`;
 
   return (
     <div className="min-h-screen bg-[#F7F3EE] text-[#444444]">
-      {/* HEADER */}
-      <header className="relative py-6 bg-white shadow-sm flex justify-center items-center">
+      {/* HEADER – logo maior */}
+      <header className="relative py-6 md:py-8 bg-white shadow-sm flex justify-center items-center">
         <img
           src="/images/logo-neuza.webp"
           alt="Logo Neuza Fernandes - Espaço Saúde Perdizes"
-          className="h-20 md:h-24"
+          className="h-24 md:h-28 lg:h-32 w-auto"
         />
         <a
           href={CONFIG.instagram}
@@ -110,97 +81,80 @@ export default function LandingPage() {
         </a>
       </header>
 
-      {/* SOBRE */}
- <section id="sobre" className="py-16 bg-white">
-  <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-10 items-center px-4">
-    {/* Texto */}
-    <div>
-      <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">
-        Sobre Neuza Fernandes
-      </h2>
-      <p className="mt-4 text-[#555] leading-relaxed">
-        Com mais de <strong>40 anos de experiência em estética terapêutica</strong>,
-        Neuza combina técnica, sensibilidade e propósito para transformar corpo e
-        mente com segurança e acolhimento.
-        <br /><br />
-        Especialista em <strong>Drenagem Linfática Método Vodder</strong>, <strong>Shiatsu</strong>,
-        <strong> Reiki</strong> e <strong>Reflexologia</strong>, ela acredita que cada toque é
-        uma forma de cuidar profundamente.
-      </p>
-      <blockquote className="mt-6 border-l-4 pl-4 italic text-[#666] border-[#e2a9f1]">
-        “Cada corpo tem um ritmo. Eu respeito o seu.”
-      </blockquote>
+      {/* SOBRE (sem animação) */}
+      <section id="sobre" className="py-16 bg-white">
+        <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-10 items-center px-4">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Sobre Neuza Fernandes</h2>
+            <p className="mt-4 text-[#555] leading-relaxed">
+              Com mais de <strong>40 anos de experiência em estética terapêutica</strong>, Neuza
+              combina técnica, sensibilidade e propósito para transformar corpo e mente com
+              segurança e acolhimento.
+              <br /><br />
+              Especialista em <strong>Drenagem Linfática Método Vodder</strong>, <strong>Shiatsu</strong>,
+              <strong> Reiki</strong> e <strong>Reflexologia</strong>, ela acredita que cada toque é uma forma de cuidar.
+            </p>
+            <blockquote className="mt-6 border-l-4 pl-4 italic text-[#666] border-[#e2a9f1]">
+              “Cada corpo tem um ritmo. Eu respeito o seu.”
+            </blockquote>
 
-      <div className="mt-6 flex gap-3 flex-wrap">
-        <a
-          href="https://wa.me/5511939273471?text=Ol%C3%A1%20Neuza%2C%20gostaria%20de%20agendar%20uma%20sess%C3%A3o"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-white shadow-md hover:shadow-lg transition"
-          style={{ background: "#06662a" }}
-        >
-          💬 Agendar pelo WhatsApp
-        </a>
-        <a
-          href="#espaco"
-          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-[#eae2db] text-[#444] hover:bg-white"
-        >
-          Ver o Espaço
-        </a>
-      </div>
-    </div>
+            <div className="mt-6 flex gap-3 flex-wrap">
+              <a
+                href={CONFIG.whatsappDefault}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-white shadow-md hover:shadow-lg transition"
+                style={{ background: PALETTE.moss }}
+              >
+                💬 Agendar pelo WhatsApp
+              </a>
+              <a
+                href="#galeria"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-[#eae2db] text-[#444] hover:bg-white"
+              >
+                Ver o Espaço
+              </a>
+            </div>
+          </div>
 
-    {/* Imagem */}
-    <div className="flex justify-center">
-      <img
-        src="/images/foto-neuza-preparando.webp"
-        alt="Neuza Fernandes preparando materiais antes do atendimento"
-        className="rounded-2xl shadow-md object-cover w-full h-[420px] max-w-[520px]"
-        width={1200}
-        height={800}
-      />
-    </div>
-  </div>
-</section>
+          <div className="flex justify-center">
+            <img
+              src="/images/foto-neuza-preparando.webp"
+              alt="Neuza Fernandes preparando materiais antes do atendimento"
+              className="rounded-2xl shadow-md object-cover w-full h-[420px] max-w-[520px]"
+              width={1200}
+              height={800}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* O ESPAÇO */}
       <section id="galeria" className="py-20 bg-[#F7F3FF]">
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="text-2xl md:text-3xl font-semibold text-[#222] text-center mb-10">O Espaço</h2>
-
-          <LazyMotion features={domAnimation}>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {gallery.map((f, i) => (
-                <m.article
-                  key={f.src}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.4 }}
-                  transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="rounded-2xl bg-white shadow-md overflow-hidden hover:shadow-lg transition"
-                >
-                  <div className="aspect-[4/3] w-full">
-                    <img
-                      src={f.src}
-                      alt={f.alt}
-                      className="h-full w-full object-cover object-center"
-                      loading="lazy"
-                      width={800}
-                      height={600}
-                    />
-                  </div>
-                  <div className="px-4 py-3 text-center text-[13px] text-[#666]">
-                    {f.caption}
-                  </div>
-                </m.article>
-              ))}
-            </div>
-          </LazyMotion>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {gallery.map((f) => (
+              <article key={f.src} className="rounded-2xl bg-white shadow-md overflow-hidden hover:shadow-lg transition">
+                <div className="aspect-[4/3] w-full">
+                  <img
+                    src={f.src}
+                    alt={f.alt}
+                    className="h-full w-full object-cover object-center"
+                    loading="lazy"
+                    width={800}
+                    height={600}
+                  />
+                </div>
+                <div className="px-4 py-3 text-center text-[13px] text-[#666]">{f.caption}</div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* SERVIÇOS */}
-      <section id="servicos" className="py-16 bg-white">
+      {/* SERVIÇOS – seção isolada e fechada */}
+      <section id="servicos" className="pt-16 pb-20 bg-white border-t border-[#efe9e2]">
         <div className="mx-auto max-w-6xl px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Serviços</h2>
@@ -210,15 +164,8 @@ export default function LandingPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {SERVICES.map((s, i) => (
-              <m.div
-                key={s.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="rounded-2xl border border-[#efe9e2] bg-white p-4 shadow-sm hover:shadow-md transition"
-              >
+            {SERVICES.map((s) => (
+              <div key={s.name} className="rounded-2xl border border-[#efe9e2] bg-white p-4 shadow-sm hover:shadow-md transition">
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="font-semibold text-[#222] leading-snug">{s.name}</h3>
                   <span className="text-[12px] text-[#067a36] bg-[#eaf7f0] px-2 py-1 rounded-full whitespace-nowrap">
@@ -226,16 +173,12 @@ export default function LandingPage() {
                   </span>
                 </div>
                 <p className="mt-2 text-sm text-[#555]">{s.desc}</p>
-
                 <div className="mt-3 flex items-center justify-between">
                   {s.tag ? (
-                    <span className="text-[11px] px-2 py-1 rounded-full bg-[#F7F3FF] text-[#6b5a81]">
-                      {s.tag}
-                    </span>
+                    <span className="text-[11px] px-2 py-1 rounded-full bg-[#F7F3FF] text-[#6b5a81]">{s.tag}</span>
                   ) : (
                     <span />
                   )}
-
                   <a
                     href={whatsappFor(s.name)}
                     target="_blank"
@@ -246,20 +189,34 @@ export default function LandingPage() {
                     Agendar
                   </a>
                 </div>
-              </m.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DEPOIMENTOS – separado da seção acima */}
+      <section id="depoimentos" className="py-16 bg-[#F7F3FF] border-t border-[#efe9e2]">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-[#222] text-center mb-8">Depoimentos</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <figure key={i} className="rounded-2xl bg-white border border-[#efe9e2] p-5 shadow-sm">
+                <blockquote className="text-[#444] leading-relaxed">“{t.text}”</blockquote>
+                <figcaption className="mt-3 text-sm text-[#666]">— {t.name}</figcaption>
+              </figure>
             ))}
           </div>
         </div>
       </section>
 
       {/* VISITE-NOS */}
-      <section id="visite" className="py-14 bg-white">
+      <section id="visite" className="py-14 bg-white border-t border-[#efe9e2]">
         <div className="mx-auto max-w-6xl px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Visite-nos</h2>
           <p className="mt-2 text-[#555]">R. Cotoxó, 611 — 1º andar (Cj 17) — Perdizes / SP</p>
-          <p className="text-sm mt-1" style={{ color: PALETTE.moss }}>
-            Estacionamento pago no prédio
-          </p>
+          <p className="text-sm mt-1" style={{ color: PALETTE.moss }}>Estacionamento pago no prédio</p>
+
           <div className="mt-4">
             <a
               href="https://google.com/maps/place/Espaço+Saúde+Neuza+Fernandes+%7C+Perdizes/data=!4m2!3m1!1s0x0:0x30f3cd4266258a45"
@@ -284,30 +241,11 @@ export default function LandingPage() {
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-
-          <div className="mt-8 grid md:grid-cols-3 gap-6 text-left">
-            <div className="rounded-2xl p-5 bg-[#F7F3EE] border border-[#efe9e2]">
-              <h3 className="font-semibold text-[#222]">Horário de Funcionamento</h3>
-              <ul className="mt-3 text-sm text-[#555] space-y-1">
-                <li>Segunda-feira: <strong>Fechado</strong></li>
-                <li>Terça a Sexta: <strong>09:00–19:00</strong></li>
-                <li>Sábado: <strong>08:00–16:00</strong></li>
-                <li>Domingo: <strong>Fechado</strong></li>
-              </ul>
-            </div>
-            <div className="rounded-2xl p-5 bg-[#F7F3EE] border border-[#efe9e2] md:col-span-2">
-              <h3 className="font-semibold text-[#222]">Como chegar</h3>
-              <p className="mt-3 text-sm text-[#555]">
-                A poucos minutos da Av. Sumaré. Acesso fácil por transporte público e carro.
-                Estacionamento <strong>pago</strong> disponível no prédio (sujeito à disponibilidade).
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* CTA FINAL */}
-      <section id="cta" className="py-20 bg-white text-center">
+      <section id="cta" className="py-20 bg-white text-center border-t border-[#efe9e2]">
         <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Reserve seu momento de equilíbrio</h2>
         <p className="mt-3 text-[#555]">Agende sua sessão agora e sinta o poder do toque consciente.</p>
         <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
