@@ -94,7 +94,7 @@ export default function LandingPage() {
       {/* HEADER */}
       <header className="relative py-6 bg-white shadow-sm flex justify-center items-center">
         <img
-          src="/images/logo-neuza.png"
+          src="/images/logo-neuza.webp"
           alt="Logo Neuza Fernandes - Espaço Saúde Perdizes"
           className="h-20 md:h-24"
         />
@@ -111,60 +111,57 @@ export default function LandingPage() {
       </header>
 
       {/* SOBRE */}
-      <section id="sobre" className="py-16 bg-white">
-        <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-10 items-center px-4">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Sobre Neuza Fernandes</h2>
-            <p className="mt-4 text-[#555] leading-relaxed">
-              Com mais de <strong>40 anos de prática em estética terapêutica</strong>, Neuza
-              combina técnica, sensibilidade e propósito para transformar corpo e mente com
-              segurança e acolhimento.
-              <br /><br />
-              Especialista em <strong>Drenagem Linfática Método Vodder</strong>, <strong>Shiatsu</strong>,
-              <strong> Reiki</strong> e <strong>Reflexologia</strong>, ela acredita que cada toque é uma forma
-              de cuidar profundamente.
-            </p>
-            <blockquote className="mt-6 border-l-4 pl-4 italic text-[#666]" style={{ borderColor: PALETTE.lilac }}>
-              “Cada corpo tem um ritmo. Eu respeito o seu.”
-            </blockquote>
-            <div className="mt-6 flex gap-3">
-              <a
-                href={CONFIG.whatsappDefault}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-white shadow-md hover:shadow-lg transition"
-                style={{ background: PALETTE.moss }}
-              >
-                💬 Agendar pelo WhatsApp
-              </a>
-              <a
-                href="#galeria"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-[#eae2db] text-[#444] hover:bg-white"
-              >
-                Ver o espaço
-              </a>
-            </div>
-          </m.div>
+ <section id="sobre" className="py-16 bg-white">
+  <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-10 items-center px-4">
+    {/* Texto */}
+    <div>
+      <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">
+        Sobre Neuza Fernandes
+      </h2>
+      <p className="mt-4 text-[#555] leading-relaxed">
+        Com mais de <strong>40 anos de experiência em estética terapêutica</strong>,
+        Neuza combina técnica, sensibilidade e propósito para transformar corpo e
+        mente com segurança e acolhimento.
+        <br /><br />
+        Especialista em <strong>Drenagem Linfática Método Vodder</strong>, <strong>Shiatsu</strong>,
+        <strong> Reiki</strong> e <strong>Reflexologia</strong>, ela acredita que cada toque é
+        uma forma de cuidar profundamente.
+      </p>
+      <blockquote className="mt-6 border-l-4 pl-4 italic text-[#666] border-[#e2a9f1]">
+        “Cada corpo tem um ritmo. Eu respeito o seu.”
+      </blockquote>
 
-          <m.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <img
-              src="/images/foto-neuza-preparando.webp"
-              alt="Neuza organizando materiais antes do atendimento"
-              className="rounded-2xl shadow-md object-cover w-full h-[420px]"
-            />
-          </m.div>
-        </div>
-      </section>
+      <div className="mt-6 flex gap-3 flex-wrap">
+        <a
+          href="https://wa.me/5511939273471?text=Ol%C3%A1%20Neuza%2C%20gostaria%20de%20agendar%20uma%20sess%C3%A3o"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-white shadow-md hover:shadow-lg transition"
+          style={{ background: "#06662a" }}
+        >
+          💬 Agendar pelo WhatsApp
+        </a>
+        <a
+          href="#espaco"
+          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-[#eae2db] text-[#444] hover:bg-white"
+        >
+          Ver o Espaço
+        </a>
+      </div>
+    </div>
+
+    {/* Imagem */}
+    <div className="flex justify-center">
+      <img
+        src="/images/foto-neuza-preparando.webp"
+        alt="Neuza Fernandes preparando materiais antes do atendimento"
+        className="rounded-2xl shadow-md object-cover w-full h-[420px] max-w-[520px]"
+        width={1200}
+        height={800}
+      />
+    </div>
+  </div>
+</section>
 
       {/* O ESPAÇO */}
       <section id="galeria" className="py-20 bg-[#F7F3FF]">
