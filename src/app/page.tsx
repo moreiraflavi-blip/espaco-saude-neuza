@@ -7,13 +7,14 @@ import { Instagram } from "lucide-react";
 export default function Page() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      {/* HEADER */}
+      {/* HEADER - logo equilibrada */}
       <header className="relative py-4 md:py-6 bg-white shadow-sm flex justify-center items-center">
         <img
           src="/images/logo-neuza-tight.webp"
           alt="Logo Neuza Fernandes - Espaço Saúde Perdizes"
-          className="w-[180px] md:w-[260px] lg:w-[320px] h-auto block transition-all duration-300 drop-shadow-sm"
+          className="w-[160px] md:w-[220px] lg:w-[280px] h-auto block transition-all duration-300"
         />
+
         <a
           href="https://www.instagram.com/espacosaudeneuza/"
           target="_blank"
