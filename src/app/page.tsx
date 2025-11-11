@@ -66,8 +66,8 @@ export default function LandingPage() {
       <header className="relative py-6 md:py-8 bg-white shadow-sm flex justify-center items-center">
         <img
           src="/images/logo-neuza.webp"
-          alt="Logo Neuza Fernandes - Espaço Saúde Perdizes"
-          className="h-24 md:h-28 lg:h-32 w-auto"
+  alt="Logo Neuza Fernandes - Espaço Saúde Perdizes"
+  className="h-32 md:h-40 lg:h-44 w-auto transition-all duration-300"
         />
         <a
           href={CONFIG.instagram}
