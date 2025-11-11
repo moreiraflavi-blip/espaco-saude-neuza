@@ -1,6 +1,7 @@
 "use client";
+import { m, LazyMotion, domAnimation } from "framer-motion";
+import { Instagram, MapPin } from "lucide-react";
 
-// ====== Cores do tema ======
 const PALETTE = {
   lilac: "#e2a9f1",
   softLilac: "#F7F3FF",
@@ -10,51 +11,53 @@ const PALETTE = {
   gray: "#444444",
 };
 
-// ====== Ícones SVG nativos (sem libs) ======
-function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2.2A2.8 2.8 0 1 0 12 15.8 2.8 2.8 0 0 0 12 9.2zM17.5 6.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-    </svg>
-  );
-}
-function MapPinIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
-    </svg>
-  );
-}
+type Service = {
+  name: string;
+  desc: string;
+  price: string;
+  tag?: string;
+};
 
 export default function LandingPage() {
   const CONFIG = {
     instagram: "https://www.instagram.com/espacosaudeneuza/",
-    whatsapp: "https://wa.me/5511939273471?text=Ol%C3%A1%20Neuza%2C%20gostaria%20de%20agendar%20uma%20sess%C3%A3o",
-    maps: "https://google.com/maps/place/Espaço+Saúde+Neuza+Fernandes+%7C+Perdizes/data=!4m2!3m1!1s0x0:0x30f3cd4266258a45?sa=X&ved=1t:2428&ictx=111",
+    whatsappDefault:
+      "https://wa.me/5511939273471?text=Ol%C3%A1%20Neuza%2C%20gostaria%20de%20agendar%20uma%20sess%C3%A3o",
+    whatsappBase: "https://wa.me/5511939273471?text=",
   };
 
-  // ====== Helper para mensurar cliques com GTM/GA4 ======
-  const track = (event: string, params: Record<string, any> = {}) => {
-    if (typeof window !== "undefined" && (window as any).dataLayer) {
-      (window as any).dataLayer.push({ event, ...params });
-    }
-  };
-
-  // ====== Imagens (todas .webp) ======
-  const GALLERY = [
-    "/images/foto-neuza-arrumando.webp",
-    "/images/espaco1.webp",
-    "/images/espaco2.webp",
-    "/images/espaco3.webp",
-    "/images/espaco4.webp",
-    "/images/espaco5.webp",
-    "/images/espaco6.webp",
-    "/images/espaco7.webp",
+  const SERVICES: Service[] = [
+    { name: "Limpeza de Pele Profunda", desc: "Protocolo para remover impurezas, hidratar e renovar a pele.", price: "R$ 120,00" },
+    { name: "Drenagem Linfática Tradicional", desc: "Técnica suave que estimula o sistema linfático e reduz inchaços.", price: "R$ 120,00" },
+    { name: "Drenagem para Gestantes", desc: "Segura e indicada para aliviar inchaços na gestação.", price: "R$ 120,00", tag: "Gestante" },
+    { name: "Drenagem Pós-Cirúrgica", desc: "Auxilia na recuperação e reduz edemas após procedimentos.", price: "R$ 120,00", tag: "Pós-op" },
+    { name: "Massagem Relaxante", desc: "Alívio do estresse e tensões. Bem-estar físico e mental.", price: "R$ 120,00" },
+    { name: "Massagem Modeladora", desc: "Estimula a região e melhora o contorno corporal.", price: "R$ 120,00" },
+    { name: "Ventosaterapia", desc: "Alívio de dores e tensões com efeito detox natural.", price: "R$ 120,00" },
+    { name: "Bambuterapia", desc: "Modela o corpo e relaxa profundamente com bambus.", price: "R$ 120,00" },
+    { name: "Shiatsu", desc: "Pressão em pontos energéticos para equilíbrio do corpo.", price: "R$ 120,00" },
+    { name: "Reiki", desc: "Terapia energética para equilíbrio emocional e relaxamento.", price: "R$ 120,00" },
+    { name: "Reflexologia Podal", desc: "Ativa pontos reflexos nos pés e melhora funções do corpo.", price: "R$ 120,00" },
   ];
+
+  const gallery = [
+    { src: "/images/foto-neuza-arrumando.webp", alt: "Preparo do atendimento" },
+    { src: "/images/espaco1.webp", alt: "Sala de atendimento 1" },
+    { src: "/images/espaco2.webp", alt: "Sala de atendimento 2" },
+    { src: "/images/espaco3.webp", alt: "Sala de atendimento 3" },
+    { src: "/images/espaco4.webp", alt: "Detalhes do ambiente" },
+    { src: "/images/espaco5.webp", alt: "Camilla e iluminação suave" },
+    { src: "/images/espaco6.webp", alt: "Higiene e organização" },
+    { src: "/images/espaco7.webp", alt: "Recepção aconchegante" },
+  ];
+
+  const whatsappFor = (service: string) =>
+    `${CONFIG.whatsappBase}${encodeURIComponent(
+      `Olá Neuza, gostaria de agendar ${service}.`
+    )}`;
 
   return (
     <div className="min-h-screen bg-[#F7F3EE] text-[#444444]">
-
       {/* HEADER */}
       <header className="relative py-6 bg-white shadow-sm flex justify-center items-center">
         <img
@@ -66,11 +69,10 @@ export default function LandingPage() {
           href={CONFIG.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => track("instagram_click", { from: "header" })}
           className="absolute right-4 top-1/2 -translate-y-1/2 inline-flex items-center gap-2 text-sm px-3 py-2 rounded-2xl border border-[#eae2db] hover:bg-[#faf7f3]"
           aria-label="Instagram Espaço Saúde Neuza Fernandes"
         >
-          <InstagramIcon className="h-4 w-4" />
+          <Instagram className="h-4 w-4" />
           <span className="hidden sm:inline">Instagram</span>
         </a>
       </header>
@@ -78,122 +80,152 @@ export default function LandingPage() {
       {/* SOBRE */}
       <section id="sobre" className="py-16 bg-white">
         <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-10 items-center px-4">
-          <div className="opacity-0 animate-[fadeInUp_0.6s_ease_forwards]">
-            <p className="text-sm tracking-wide uppercase" style={{ color: PALETTE.moss }}>
-              Estética terapêutica em Perdizes · SP
-            </p>
-            <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-[#222]">
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">
               Sobre Neuza Fernandes
             </h2>
             <p className="mt-4 text-[#555] leading-relaxed">
-              Com mais de <strong>40 anos de prática</strong>, Neuza combina técnica, sensibilidade e propósito
-              para transformar corpo e mente com segurança e acolhimento. Especialista em{" "}
-              <strong>Drenagem Linfática Método Vodder</strong>, <strong>Shiatsu</strong>, <strong>Reiki</strong> e{" "}
-              <strong>Reflexologia</strong>.
+              Com mais de <strong>40 anos de prática em estética terapêutica</strong>, Neuza
+              combina técnica, sensibilidade e propósito para transformar corpo e mente com
+              segurança e acolhimento.
+              <br />
+              <br />
+              Especialista em <strong>Drenagem Linfática Método Vodder</strong>,{" "}
+              <strong>Shiatsu</strong>, <strong>Reiki</strong> e{" "}
+              <strong>Reflexologia</strong>, ela acredita que cada toque é uma forma de cuidar
+              profundamente.
             </p>
             <blockquote
               className="mt-6 border-l-4 pl-4 italic text-[#666]"
-              style={{ borderColor: PALETTE.lilac }}
+              style={{ borderColor: "#e2a9f1" }}
             >
               “Cada corpo tem um ritmo. Eu respeito o seu.”
             </blockquote>
-
             <div className="mt-6 flex gap-3">
               <a
-                href={CONFIG.whatsapp}
-                target="_blank" rel="noopener noreferrer"
-                onClick={() => track("whatsapp_click", { from: "sobre" })}
-                className="px-5 py-3 rounded-2xl text-white"
+                href={CONFIG.whatsappDefault}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-white shadow-md hover:shadow-lg transition"
                 style={{ background: PALETTE.moss }}
               >
                 💬 Agendar pelo WhatsApp
               </a>
               <a
-                href="#servicos"
-                className="px-5 py-3 rounded-2xl border border-[#e6ddd4] hover:bg-white"
+                href="#galeria"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-[#eae2db] text-[#444] hover:bg-white"
               >
-                Ver serviços
+                Ver o espaço
               </a>
             </div>
-          </div>
+          </m.div>
 
-          <div className="opacity-0 animate-[fadeIn_0.6s_ease_0.1s_forwards]">
+          <m.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <img
               src="/images/foto-neuza-preparando.webp"
-              alt="Neuza preparando materiais de atendimento"
+              alt="Neuza Fernandes preparando materiais de atendimento"
               className="rounded-2xl shadow-md object-cover w-full h-[420px]"
-              width={800}
-              height={420}
             />
-          </div>
+          </m.div>
         </div>
       </section>
 
-      {/* GALERIA (cards alinhados, .webp) */}
-      <section id="galeria" className="py-20" style={{ background: PALETTE.softLilac }}>
-        <div className="mx-auto max-w-6xl px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#222] mb-10">O Espaço</h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {GALLERY.map((src, i) => (
-              <div
-                key={src}
-                className="rounded-2xl shadow-md overflow-hidden bg-white opacity-0 animate-[fadeInUp_0.5s_ease_forwards]"
-                style={{ animationDelay: `${i * 100}ms` }}
-              >
-                <img
-                  src={src}
-                  alt={`Foto ${i + 1} do Espaço Saúde Neuza Fernandes`}
-                  className="object-cover w-full h-60"
-                  width={400}
-                  height={240}
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+      {/* O ESPAÇO */}
+      <section id="galeria" className="py-20 bg-[#F7F3FF]">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-[#222] text-center mb-10">
+            O Espaço
+          </h2>
+
+          <LazyMotion features={domAnimation}>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {gallery.map((f, i) => (
+                <m.article
+                  key={f.src}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  className="rounded-2xl bg-white shadow-md overflow-hidden hover:shadow-lg transition"
+                >
+                  <div className="aspect-[4/3] w-full">
+                    <img
+                      src={f.src}
+                      alt={f.alt}
+                      className="h-full w-full object-cover object-center"
+                      loading="lazy"
+                      width={800}
+                      height={600}
+                    />
+                  </div>
+                  <div className="px-4 py-3 text-center text-[13px] text-[#666]">
+                    {f.alt}
+                  </div>
+                </m.article>
+              ))}
+            </div>
+          </LazyMotion>
         </div>
       </section>
 
-      {/* SERVIÇOS (R$ 120) */}
+      {/* SERVIÇOS */}
       <section id="servicos" className="py-16 bg-white">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#222] text-center">Serviços</h2>
-          <p className="text-[#555] text-center mt-2">
-            Atendimento acolhedor e técnico — valor por sessão: <strong>R$ 120</strong>
-          </p>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Serviços</h2>
+            <p className="text-sm text-[#6b6b6b] mt-2">
+              Atendimentos individuais · valor por sessão: <strong>R$ 120,00</strong>
+            </p>
+          </div>
 
-          <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              ["💆‍♀️ Limpeza de Pele Profunda", "Remoção de impurezas, hidratação e renovação da pele."],
-              ["💧 Drenagem Linfática Tradicional", "Estimula o sistema linfático, reduz inchaços e melhora a circulação."],
-              ["🤱 Drenagem para Gestantes", "Alívio do inchaço e relaxamento com total segurança."],
-              ["🏥 Drenagem Pós-Cirúrgica", "Auxilia na recuperação e reduz edemas pós-procedimentos."],
-              ["🌿 Massagem Relaxante", "Bem-estar físico e mental; alívio de estresse e tensões."],
-              ["🔥 Massagem Modeladora", "Ativa a circulação e ajuda no contorno corporal."],
-              ["🌀 Ventosaterapia", "Alívio de dores e tensões com efeito detox natural."],
-              ["🎋 Bambuterapia", "Ativa circulação, modela o corpo e relaxa profundamente."],
-              ["✋ Shiatsu", "Equilíbrio físico e mental por pressão em pontos energéticos."],
-              ["✨ Reiki", "Equilíbrio emocional e relaxamento profundo."],
-              ["🦶 Reflexologia Podal", "Ativa pontos reflexos e melhora o funcionamento de sistemas."],
-            ].map(([title, desc]) => (
-              <div key={title as string} className="rounded-2xl border border-[#efe9e2] p-5 bg-white">
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-semibold text-[#222]">{title}</h3>
-                  <span className="text-[13px] px-2 py-1 rounded-full" style={{ background: "#eef7f0", color: PALETTE.moss }}>
-                    R$ 120
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {SERVICES.map((s, i) => (
+              <m.div
+                key={s.name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="rounded-2xl border border-[#efe9e2] bg-white p-4 shadow-sm hover:shadow-md transition"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-semibold text-[#222] leading-snug">{s.name}</h3>
+                  <span className="text-[12px] text-[#067a36] bg-[#eaf7f0] px-2 py-1 rounded-full whitespace-nowrap">
+                    {s.price}
                   </span>
                 </div>
-                <p className="text-sm text-[#555] mt-2">{desc}</p>
-                <a
-                  href={CONFIG.whatsapp}
-                  target="_blank" rel="noopener noreferrer"
-                  onClick={() => track("whatsapp_click", { from: "servico", service: title })}
-                  className="inline-block mt-4 text-sm px-3 py-2 rounded-2xl text-white"
-                  style={{ background: PALETTE.moss }}
-                >
-                  Agendar
-                </a>
-              </div>
+                <p className="mt-2 text-sm text-[#555]">{s.desc}</p>
+
+                <div className="mt-3 flex items-center justify-between">
+                  {s.tag ? (
+                    <span className="text-[11px] px-2 py-1 rounded-full bg-[#F7F3FF] text-[#6b5a81]">
+                      {s.tag}
+                    </span>
+                  ) : (
+                    <span />
+                  )}
+
+                  <a
+                    href={whatsappFor(s.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[13px] inline-flex items-center gap-2 px-3 py-2 rounded-xl text-white hover:shadow transition"
+                    style={{ background: PALETTE.moss }}
+                  >
+                    Agendar
+                  </a>
+                </div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -203,18 +235,21 @@ export default function LandingPage() {
       <section id="visite" className="py-14 bg-white">
         <div className="mx-auto max-w-6xl px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Visite-nos</h2>
-          <p className="mt-2 text-[#555]">R. Cotoxó, 611 — 1º andar (Cj 17) — Perdizes / SP</p>
-          <p className="text-sm mt-1" style={{ color: PALETTE.moss }}>Estacionamento pago no prédio</p>
-
+        <p className="mt-2 text-[#555]">
+            R. Cotoxó, 611 — 1º andar (Cj 17) — Perdizes / SP
+          </p>
+          <p className="text-sm mt-1" style={{ color: PALETTE.moss }}>
+            Estacionamento pago no prédio
+          </p>
           <div className="mt-4">
             <a
-              href={CONFIG.maps}
-              target="_blank" rel="noopener noreferrer"
-              onClick={() => track("maps_click", { from: "visite" })}
+              href="https://google.com/maps/place/Espaço+Saúde+Neuza+Fernandes+%7C+Perdizes/data=!4m2!3m1!1s0x0:0x30f3cd4266258a45"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-white shadow-sm hover:shadow-md"
               style={{ background: PALETTE.moss }}
             >
-              <MapPinIcon className="h-4 w-4" /> Ver no Google Maps
+              <MapPin className="h-4 w-4 text-white" /> Ver no Google Maps
             </a>
           </div>
 
@@ -222,8 +257,12 @@ export default function LandingPage() {
             <iframe
               title="Mapa – Espaço Saúde Neuza Fernandes"
               src="https://www.google.com/maps?q=R.+Cotox%C3%B3,+611+-+Perdizes,+S%C3%A3o+Paulo+-+SP&output=embed"
-              width="100%" height="340" style={{ border: 0 }}
-              allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
+              width="100%"
+              height="340"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
 
@@ -231,10 +270,10 @@ export default function LandingPage() {
             <div className="rounded-2xl p-5 bg-[#F7F3EE] border border-[#efe9e2]">
               <h3 className="font-semibold text-[#222]">Horário de Funcionamento</h3>
               <ul className="mt-3 text-sm text-[#555] space-y-1">
-                <li>Segunda-feira: <strong>Encerrado</strong></li>
+                <li>Segunda-feira: <strong>Fechado</strong></li>
                 <li>Terça a Sexta: <strong>09:00–19:00</strong></li>
                 <li>Sábado: <strong>08:00–16:00</strong></li>
-                <li>Domingo: <strong>Encerrado</strong></li>
+                <li>Domingo: <strong>Fechado</strong></li>
               </ul>
             </div>
             <div className="rounded-2xl p-5 bg-[#F7F3EE] border border-[#efe9e2] md:col-span-2">
@@ -248,54 +287,19 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* DEPOIMENTOS */}
-      <section id="depoimentos" className="py-16" style={{ background: PALETTE.softLilac }}>
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#222] text-center">Quem veio, recomenda</h2>
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            {[
-              ["“Saí leve. A drenagem da Neuza mudou minha semana.”", "Marina • Perdizes"],
-              ["“Atendimento humano e técnico. Confio de olhos fechados.”", "Patrícia • Pompeia"],
-              ["“A melhor massagem relaxante que já fiz.”", "Camila • Sumaré"],
-            ].map(([quote, author]) => (
-              <div key={author as string} className="rounded-2xl bg-white p-5 border border-[#efe9e2] shadow-sm">
-                <p className="text-[#444] leading-relaxed">{quote}</p>
-                <p className="text-sm text-[#666] mt-3">{author}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="py-16 bg-white">
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#222] text-center">Dúvidas frequentes</h2>
-        <div className="mt-8 grid md:grid-cols-2 gap-6">
-          {[
-            ["Quanto tempo dura cada sessão?", "Em média 50–60 minutos."],
-            ["Gestantes podem fazer?", "Sim, com protocolos específicos e segurança total."],
-            ["Contraindicações?", "Estados febris, trombose ativa e pós-operatório sem liberação médica."],
-            ["Formas de pagamento?", "Pix, cartão e dinheiro."],
-          ].map(([q, a]) => (
-            <div key={q as string} className="rounded-2xl border border-[#efe9e2] p-5 bg-white">
-              <h3 className="font-semibold text-[#222]">{q}</h3>
-              <p className="text-[#555] mt-2 text-sm">{a}</p>
-            </div>
-          ))}
-        </div>
-        </div>
-      </section>
-
       {/* CTA FINAL */}
       <section id="cta" className="py-20 bg-white text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">Reserve seu momento de equilíbrio</h2>
-        <p className="mt-3 text-[#555]">Agende sua sessão agora e sinta o poder do toque consciente.</p>
-        <div className="mt-6 flex items-center justify-center gap-3">
+        <h2 className="text-2xl md:text-3xl font-semibold text-[#222]">
+          Reserve seu momento de equilíbrio
+        </h2>
+        <p className="mt-3 text-[#555]">
+          Agende sua sessão agora e sinta o poder do toque consciente.
+        </p>
+        <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
           <a
-            href={CONFIG.whatsapp}
-            target="_blank" rel="noopener noreferrer"
-            onClick={() => track("whatsapp_click", { from: "cta_final" })}
+            href={CONFIG.whatsappDefault}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl text-white shadow-md hover:shadow-lg transition"
             style={{ background: PALETTE.moss }}
           >
@@ -303,36 +307,26 @@ export default function LandingPage() {
           </a>
           <a
             href={CONFIG.instagram}
-            target="_blank" rel="noopener noreferrer"
-            onClick={() => track("instagram_click", { from: "cta_final" })}
-            className="inline-flex items-center gap-2 rounded-2xl border border-[#dfd7cf] px-4 py-2 hover:bg-white"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-[#dfd7cf] text-[#444] hover:bg-white"
           >
-            <InstagramIcon className="h-4 w-4" /> Instagram
+            <Instagram className="h-4 w-4" /> Instagram
           </a>
         </div>
       </section>
 
-      {/* CTA STICKY (mobile) */}
-      <div className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-t border-[#eee]">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-          <span className="text-sm text-[#444]">Pronta para se cuidar?</span>
-          <a
-            href={CONFIG.whatsapp}
-            target="_blank" rel="noopener noreferrer"
-            onClick={() => track("whatsapp_click", { from: "sticky_bar" })}
-            className="px-4 py-2 rounded-2xl text-white text-sm"
-            style={{ background: PALETTE.moss }}
-          >
-            Agendar
-          </a>
-        </div>
-      </div>
-
-      {/* Keyframes de animação */}
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: translateY(0) } }
-      `}</style>
+      {/* BOTÃO FIXO WHATSAPP (MOBILE) */}
+      <a
+        href={CONFIG.whatsappDefault}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed md:hidden bottom-4 right-4 z-50 inline-flex items-center justify-center h-14 w-14 rounded-full shadow-lg"
+        style={{ background: PALETTE.moss }}
+        aria-label="Agendar pelo WhatsApp"
+      >
+        <span className="text-white text-xl">💬</span>
+      </a>
     </div>
   );
 }
