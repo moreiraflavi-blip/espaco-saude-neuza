@@ -1,12 +1,8 @@
-import type { MetadataRoute } from "next";
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = "https://espacosaudeneuzafernandes.com.br";
   return {
-    rules: [
-      { userAgent: "*", allow: "/" }
-    ],
-    sitemap: `${base}/sitemap.xml`,
-    host: base
+    rules: [{ userAgent: "*", allow: "/" }],
+    sitemap: "https://espaco-saude-neuza.vercel.app/sitemap.xml",
   };
 }

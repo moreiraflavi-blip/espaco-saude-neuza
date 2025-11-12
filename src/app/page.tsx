@@ -2,19 +2,18 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Instagram } from "lucide-react";
+import { Instagram, MapPin } from "lucide-react";
 
 export default function Page() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      {/* HEADER - logo proporcional */}
-      <header className="relative py-4 md:py-6 bg-white shadow-sm flex justify-center items-center">
+      {/* HEADER compacto */}
+      <header className="relative py-4 md:py-5 bg-white border-b border-gray-100 flex justify-center items-center">
         <img
           src="/images/logo-neuza-tight.webp"
           alt="Logo Neuza Fernandes - Espaço Saúde Perdizes"
-          className="w-[160px] md:w-[220px] lg:w-[310px] h-auto block transition-all duration-300"
+          className="w-[170px] md:w-[230px] lg:w-[260px] h-auto block transition-all"
         />
-
         <a
           href="https://www.instagram.com/espacosaudeneuza/"
           target="_blank"
@@ -28,7 +27,7 @@ export default function Page() {
       </header>
 
       {/* SOBRE */}
-      <section id="sobre" className="py-16 bg-white">
+      <section id="sobre" className="pt-10 md:pt-12 pb-14 bg-white">
         <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-10 items-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -36,46 +35,59 @@ export default function Page() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-semibold mb-4">Sobre Neuza Fernandes</h2>
+            <h1 className="text-3xl font-semibold mb-4">Sobre Neuza Fernandes</h1>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Com mais de <strong>40 anos de experiência em estética terapêutica</strong>,
-              Neuza combina técnica, sensibilidade e propósito para transformar corpo e mente com
+              Com mais de <strong>40 anos de experiência em estética terapêutica</strong>, Neuza
+              combina técnica, sensibilidade e propósito para transformar corpo e mente com
               segurança e acolhimento.
             </p>
-            <p className="text-gray-700 leading-relaxed mb-4">
+            <p className="text-gray-700 leading-relaxed">
               Especialista em <strong>Drenagem Linfática Método Vodder, Shiatsu, Reiki e Reflexologia</strong>,
               ela acredita que cada toque é uma forma de cuidar.
             </p>
-            <a
-              href="https://wa.me/55119939273471"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex mt-6 px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-            >
-              Agendar pelo WhatsApp
-            </a>
+
+            <div className="flex flex-wrap items-center gap-3 mt-6">
+              <a
+                href="https://wa.me/55119939273471"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+              >
+                Agendar pelo WhatsApp
+              </a>
+              <a
+                href="https://google.com/maps/place/Espaço+Saúde+Neuza+Fernandes+%7C+Perdizes/data=!4m2!3m1!1s0x0:0x30f3cd4266258a45?sa=X&ved=1t:2428&ictx=111"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-lg border border-gray-300 hover:bg-gray-50"
+              >
+                <MapPin className="h-4 w-4" /> Ver no Google Maps
+              </a>
+            </div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             viewport={{ once: true }}
           >
             <Image
               src="/images/foto-neuza-preparando.webp"
               alt="Neuza Fernandes em atendimento"
-              width={600}
-              height={400}
-              className="rounded-2xl shadow-md"
+              width={640}
+              height={480}
+              className="rounded-2xl shadow-md w-full h-auto"
+              priority
             />
           </motion.div>
         </div>
       </section>
 
       {/* O ESPAÇO */}
-      <section id="espaco" className="py-16 bg-[#f7f3ff]">
-        <h2 className="text-center text-xl font-semibold text-gray-800 mb-10">O Espaço</h2>
+      <section id="espaco" className="py-14 bg-[#f7f3ff]">
+        <h2 className="text-center text-xl font-semibold text-gray-800 mb-8">O Espaço</h2>
+
         <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
           {[
             { src: "/images/espaco1.webp", legenda: "Preparo do atendimento" },
@@ -87,55 +99,127 @@ export default function Page() {
             { src: "/images/espaco7.webp", legenda: "Localização" },
             { src: "/images/foto-neuza-arrumando.webp", legenda: "Recepção aconchegante" },
           ].map((foto, i) => (
-            <motion.div
+            <motion.article
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
+              transition={{ duration: 0.45, delay: i * 0.04 }}
               viewport={{ once: true }}
               className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition"
             >
-              <Image
-                src={foto.src}
-                alt={foto.legenda}
-                width={400}
-                height={300}
-                className="w-full h-56 object-cover"
-              />
+              <div className="relative w-full aspect-[4/3]">
+                <Image
+                  src={foto.src}
+                  alt={foto.legenda}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
+              </div>
               <div className="text-center text-sm py-3 text-gray-700">{foto.legenda}</div>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
+      {/* SERVIÇOS (todos R$ 120,00) */}
+      <section id="servicos" className="py-14 bg-white">
+        <h2 className="text-center text-xl font-semibold text-gray-800 mb-8">Serviços</h2>
+
+        <div className="mx-auto max-w-6xl grid gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { nome: "Drenagem Linfática", duracao: "60 min", preco: "R$ 120,00" },
+            { nome: "Shiatsu Terapêutico", duracao: "60 min", preco: "R$ 120,00" },
+            { nome: "Reflexologia Podal", duracao: "50 min", preco: "R$ 120,00" },
+            { nome: "Massagem Relaxante", duracao: "60 min", preco: "R$ 120,00" },
+            { nome: "Massagem Modeladora", duracao: "60 min", preco: "R$ 120,00" },
+            { nome: "Drenagem Pós-Cirúrgica", duracao: "60 min", preco: "R$ 120,00" },
+            { nome: "Ventosaterapia", duracao: "50 min", preco: "R$ 120,00" },
+            { nome: "Bambuterapia", duracao: "60 min", preco: "R$ 120,00" },
+            { nome: "Massagem Facial", duracao: "45 min", preco: "R$ 120,00" },
+          ].map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.04 }}
+              viewport={{ once: true }}
+              className="h-full rounded-xl border border-gray-200 bg-[#fafafa] p-5 shadow-[0_1px_0_#eee] hover:shadow-lg hover:bg-white transition"
+            >
+              <div className="flex h-full flex-col justify-between">
+                <div>
+                  <h3 className="font-medium text-gray-800">{s.nome}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{s.duracao}</p>
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-green-700 font-semibold">{s.preco}</span>
+                  <a
+                    href="https://wa.me/55119939273471"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50"
+                  >
+                    Agendar
+                  </a>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* SERVIÇOS */}
-      <section id="servicos" className="py-16 bg-white">
-        <h2 className="text-center text-xl font-semibold text-gray-800 mb-10">Serviços</h2>
-        <div className="mx-auto max-w-6xl grid sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
-          {[
-            { nome: "Drenagem Linfática", duracao: "60 min", preco: "R$ 180" },
-            { nome: "Shiatsu Terapêutico", duracao: "60 min", preco: "R$ 170" },
-            { nome: "Reflexologia Podal", duracao: "50 min", preco: "R$ 150" },
-            { nome: "Massagem Relaxante", duracao: "60 min", preco: "R$ 170" },
-            { nome: "Massagem Modeladora", duracao: "60 min", preco: "R$ 190" },
-            { nome: "Drenagem Pós-Cirúrgica", duracao: "60 min", preco: "R$ 210" },
-            { nome: "Ventosaterapia", duracao: "50 min", preco: "R$ 140" },
-            { nome: "Bambuterapia", duracao: "60 min", preco: "R$ 180" },
-            { nome: "Massagem Facial", duracao: "45 min", preco: "R$ 130" },
-          ].map((servico, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              viewport={{ once: true }}
-              className="border border-gray-200 rounded-xl p-5 hover:shadow-lg transition bg-[#fafafa]"
-            >
-              <h3 className="font-medium text-gray-800">{servico.nome}</h3>
-              <p className="text-sm text-gray-600 mt-1">{servico.duracao}</p>
-              <p className="text-green-700 font-semibold mt-2">{servico.preco}</p>
-            </motion.div>
-          ))}
+      {/* VISITE-NOS + HORÁRIOS (Fechado) */}
+      <section id="visite" className="py-14 bg-white">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <h2 className="text-xl font-semibold text-gray-800">Visite-nos</h2>
+          <p className="mt-2 text-gray-700">
+            R. Cotoxó, 611 — 1º andar (Cj 17) — Perdizes / SP<br />
+            <span className="text-green-700">Estacionamento pago no prédio</span>
+          </p>
+
+          <div className="mt-6 rounded-2xl overflow-hidden border border-[#efe9e2] shadow-sm">
+            <iframe
+              title="Mapa – Espaço Saúde Neuza Fernandes"
+              src="https://www.google.com/maps?q=R.+Cotox%C3%B3,+611+-+Perdizes,+S%C3%A3o+Paulo+-+SP&output=embed"
+              width="100%"
+              height="340"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
+          <div className="mt-8 grid md:grid-cols-3 gap-6 text-left">
+            <div className="rounded-2xl p-5 bg-[#F7F3EE] border border-[#efe9e2]">
+              <h3 className="font-semibold text-[#222]">Horário de Funcionamento</h3>
+              <ul className="mt-3 text-sm text-[#555] space-y-1">
+                <li>Segunda-feira: <strong>Fechado</strong></li>
+                <li>Terça a Sexta: <strong>09:00–19:00</strong></li>
+                <li>Sábado: <strong>08:00–16:00</strong></li>
+                <li>Domingo: <strong>Fechado</strong></li>
+              </ul>
+            </div>
+            <div className="rounded-2xl p-5 bg-[#F7F3EE] border border-[#efe9e2]">
+              <h3 className="font-semibold text-[#222]">Como chegar</h3>
+              <p className="mt-3 text-sm text-[#555]">
+                A poucos minutos da Av. Sumaré. Acesso fácil por transporte público e carro.
+                Estacionamento <strong>pago</strong> no prédio (sujeito à disponibilidade).
+              </p>
+            </div>
+            <div className="rounded-2xl p-5 bg-[#F7F3EE] border border-[#efe9e2]">
+              <h3 className="font-semibold text-[#222]">Contato rápido</h3>
+              <p className="mt-3 text-sm text-[#555]">WhatsApp: <strong>(11) 93927-3471</strong></p>
+              <a
+                href="https://wa.me/55119939273471"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex mt-3 px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
+              >
+                Falar no WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
