@@ -2,13 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+/* ===========================
+   Base / Tokens
+   =========================== */
+:root {
+  --nf-lilac: #e2a9f1;
+  --nf-softLilac: #f7f3ff;
+  --nf-moss: #06662a;
+  --nf-beige: #f7f3ee;
+  --nf-gray: #444444;
+  --nf-border: #efe9e2;
+  --nf-white: #ffffff;
+}
+
+/* Fontes (via next/font em layout.tsx) */
+html,
+body {
+  font-family: var(--font-body), system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--nf-beige);
+  color: var(--nf-gray);
+}
+
+/* Títulos com Montserrat */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading), system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: #222;
+}
+
+/* Melhor renderização de imagens */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Links focados acessíveis */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--nf-lilac);
+  outline-offset: 2px;
+}
+
+/* Utilitários extras */
+@layer utilities {
+  .card {
+    @apply rounded-2xl border border-[var(--nf-border)] bg-white shadow-sm;
+  }
+  .card-hover {
+    @apply transition shadow-sm hover:shadow-md;
+  }
+}
+
+/* Suavidade no scroll */
+html {
   scroll-behavior: smooth;
 }
 
-/* transições suaves nas imagens */
-img { transition: transform .25s ease, opacity .25s ease; }
-img:hover { transform: scale(1.02); }
-
-/* suaviza a fonte em Windows */
-body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/* Ajuste de seleção de texto com a paleta */
+::selection {
+  background: var(--nf-lilac);
+  color: white;
+}
