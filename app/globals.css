@@ -3,11 +3,19 @@
 @tailwind utilities;
 
 @layer base {
-  html, body {
+  html,
+  body {
     scroll-behavior: smooth;
+    background-color: #fff;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block rounded-2xl bg-brand-600 px-5 py-3 text-white font-semibold shadow-sm hover:bg-brand-700 transition;
   }
 
-  body {
-    @apply bg-white text-slate-900 antialiased;
+  .btn-outline {
+    @apply inline-block rounded-2xl border border-slate-300 px-5 py-3 text-slate-800 font-medium hover:bg-slate-50 transition;
   }
 }
