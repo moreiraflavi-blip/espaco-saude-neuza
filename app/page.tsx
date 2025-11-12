@@ -60,7 +60,7 @@ export default function Page() {
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 md:gap-12 items-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} transition={{ duration: 0.6 }}>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-slate-900">
-              Toque terapêutico com 40+ anos de experiência em Perdizes
+              Toque terapêutico com + de 30 anos de experiência em Perdizes
             </h1>
             <p className="mt-4 text-lg text-slate-700">
               Neuza Fernandes é massoterapeuta especializada em <strong>Drenagem Linfática</strong>, <strong>Shiatsu</strong>, <strong>Reflexologia</strong> e <strong>Reiki</strong>.
