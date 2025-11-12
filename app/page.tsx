@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
 
-const WHATSAPP = "https://wa.me/55119939273471";
+const WHATSAPP = "https://wa.me/5511939273471";
 const INSTAGRAM = "https://instagram.com/espacosaudeneuza";
 const MAPS =
   "https://www.google.com/maps?q=R.+Cotox%C3%B3,+611+-+Perdizes,+S%C3%A3o+Paulo";
